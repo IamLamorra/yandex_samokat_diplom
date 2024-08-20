@@ -13,14 +13,15 @@ def create_order():
     return track
 
 
-def get_order_by_track():
+def get_order_by_track(track):
     get_order_by_track_response = requests.get(
         configuration.URL_SERVICE + configuration.GET_ORDER_BY_TRACK,
-        params={"t": create_order()}
+        params={"t": track}
     )
     return get_order_by_track_response
 
 
 def test_get_order_by_track_code_200():
-    response = get_order_by_track()
+    track = create_order()
+    response = get_order_by_track(track)
     assert response.status_code == 200
